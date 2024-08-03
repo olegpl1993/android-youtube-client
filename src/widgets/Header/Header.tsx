@@ -1,9 +1,11 @@
+/* eslint-disable import/no-unresolved */
 import { StyleSheet, Text, View } from "react-native";
+import MySvg from "../../../assets/logo.svg";
 
 const App = () => {
   return (
     <View style={styles.container}>
-      <View style={styles.logo} />
+      <MySvg width={50} height={50} onClick={() => console.log("click")} />
       <Text style={styles.text}>Header!</Text>
     </View>
   );
