@@ -2,8 +2,8 @@ import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-export default function App() {
-  const [count, setCount] = useState(0);
+const App = () => {
+  const [count, setCount] = useState<number>(0);
 
   return (
     <View style={styles.container}>
@@ -21,7 +21,9 @@ export default function App() {
       <StatusBar style="auto" />
     </View>
   );
-}
+};
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
