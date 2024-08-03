@@ -9,6 +9,7 @@ const App = () => {
     <View style={styles.container}>
       <Text>Hello my app!</Text>
       <View style={styles.row}>
+        // eslint-disable-next-line prettier/prettier
         <Text style={styles.button} onPress={() => setCount(count + 1)}>
           Plus
         </Text>
