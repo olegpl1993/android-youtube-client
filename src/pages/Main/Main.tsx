@@ -1,16 +1,21 @@
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { RootStackParamList } from "../../app/Router.types";
 import Header from "../../widgets/Header/Header";
 
-const Main = () => {
+type Props = NativeStackScreenProps<RootStackParamList, "Main">;
+
+export default function Main(props: Props) {
+  const { navigation } = props;
   const [count, setCount] = useState<number>(0);
 
   return (
     <View style={styles.container}>
-      <Header />
+      <Header navigation={navigation} />
 
       <View style={styles.body}>
-        <Text>Hello my app!</Text>
+        <Text>Main page</Text>
 
         <View style={styles.row}>
           <Text style={styles.button} onPress={() => setCount(count + 1)}>
@@ -24,29 +29,26 @@ const Main = () => {
       </View>
     </View>
   );
-};
-
-export default Main;
+}
 
 const styles = StyleSheet.create({
   container: {
     display: "flex",
     width: "100%",
-    height: "100%",
     flexDirection: "column",
-    borderWidth: 1,
-    borderColor: "green",
     padding: 5,
     gap: 5,
   },
 
   body: {
     display: "flex",
+    alignItems: "center",
     width: "100%",
     flexDirection: "column",
     borderColor: "red",
     borderWidth: 2,
     gap: 20,
+    backgroundColor: "white",
   },
 
   row: {
