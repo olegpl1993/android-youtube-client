@@ -6,6 +6,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Router />
+
       <StatusBar style="auto" />
     </View>
   );
@@ -14,9 +15,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    borderWidth: 2,
-    borderColor: "red",
-    padding: 5,
     paddingTop: 30,
   },
 });

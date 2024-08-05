@@ -25,18 +25,18 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     flexDirection: "column",
-    borderWidth: 1,
-    borderColor: "green",
     padding: 5,
     gap: 5,
   },
 
   body: {
     display: "flex",
+    alignItems: "center",
     width: "100%",
     flexDirection: "column",
     borderColor: "red",
     borderWidth: 2,
     gap: 20,
+    backgroundColor: "white",
   },
 });
