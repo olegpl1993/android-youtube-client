@@ -1,8 +1,9 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { RootStackParamList } from "../../app/Router.types";
 import Header from "../../widgets/Header/Header";
+import { styles } from "./Main.styles";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Main">;
 
@@ -30,46 +31,3 @@ export default function Main(props: Props) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    display: "flex",
-    width: "100%",
-    flexDirection: "column",
-    padding: 5,
-    gap: 5,
-  },
-
-  body: {
-    display: "flex",
-    alignItems: "center",
-    width: "100%",
-    flexDirection: "column",
-    borderColor: "red",
-    borderWidth: 2,
-    gap: 20,
-    backgroundColor: "white",
-  },
-
-  row: {
-    display: "flex",
-    flexDirection: "row",
-    gap: 20,
-  },
-
-  button: {
-    borderWidth: 2,
-    borderColor: "black",
-    borderRadius: 10,
-    padding: 10,
-    width: 100,
-    textAlign: "center",
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-
-  count: {
-    color: "red",
-    fontSize: 30,
-  },
-});
