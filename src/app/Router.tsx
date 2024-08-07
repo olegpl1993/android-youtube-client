@@ -9,9 +9,15 @@ const RootStack = createNativeStackNavigator<RootStackParamList>();
 export default function Router() {
   return (
     <NavigationContainer>
-      <RootStack.Navigator initialRouteName="Main">
-        <RootStack.Screen name="Main" component={Main} options={{ headerShown: false }} />
-        <RootStack.Screen name="Details" component={Details} options={{ headerShown: false }} />
+      <RootStack.Navigator
+        initialRouteName="Main"
+        screenOptions={{
+          headerShown: false,
+          animation: "none",
+        }}
+      >
+        <RootStack.Screen name="Main" component={Main} />
+        <RootStack.Screen name="Details" component={Details} />
       </RootStack.Navigator>
     </NavigationContainer>
   );
