@@ -1,7 +1,8 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useState } from "react";
-import { Text, View } from "react-native";
+import { Image, ScrollView, Text, View } from "react-native";
 import { RootStackParamList } from "../../app/Router.types";
+import { DataList } from "../../shared/styles/types";
 import Header from "../../widgets/Header/Header";
 import { styles } from "./Main.styles";
 
@@ -9,25 +10,50 @@ type Props = NativeStackScreenProps<RootStackParamList, "Main">;
 
 export default function Main(props: Props) {
   const { navigation } = props;
-  const [count, setCount] = useState<number>(0);
+  const [data, setData] = useState<DataList | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  const fetchData = async (query: string) => {
+    // private apiKey = 'AIzaSyBoa9dWd02Nvz0RPSHYKXAHgd2nKAEAHu8';
+    const apiKey = "AIzaSyB9rWiwNDGbsAKgwcnQOTIwp87QGmaiU7Y";
+    const baseUrl = "https://www.googleapis.com/youtube/v3/";
+    const url = `${baseUrl}search?part=snippet&q=${query}&type=video&maxResults=20&key=${apiKey}`;
+
+    try {
+      setLoading(true);
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const json = await response.json();
+      setData(json);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <View style={styles.container}>
-      <Header navigation={navigation} />
+      <Header navigation={navigation} fetchData={fetchData} />
 
-      <View style={styles.body}>
-        <Text>Main page</Text>
-
-        <View style={styles.row}>
-          <Text style={styles.button} onPress={() => setCount(count + 1)}>
-            Plus
-          </Text>
-          <Text style={styles.button} onPress={() => setCount(count - 1)}>
-            Minus
-          </Text>
-        </View>
-        <Text style={styles.count}>Count: {count}</Text>
-      </View>
+      <ScrollView style={styles.body}>
+        {loading && <Text style={styles.loader}>Loading...</Text>}
+        {data && (
+          <View style={styles.dataContainer}>
+            {data.items.map((item) => (
+              <View key={item.id.videoId} style={styles.card}>
+                <Image source={{ uri: item.snippet.thumbnails.high.url }} style={styles.image} />
+                <Text>{item.snippet.title}</Text>
+                <Text>{item.snippet.description}</Text>
+                <Text>{item.snippet.publishedAt}</Text>
+                <Text>{item.snippet.channelTitle}</Text>
+              </View>
+            ))}
+          </View>
+        )}
+      </ScrollView>
     </View>
   );
 }

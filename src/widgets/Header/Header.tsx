@@ -8,11 +8,12 @@ import { styles } from "./Header.styles";
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, keyof RootStackParamList, undefined>;
+  fetchData: (query: string) => void;
 };
 
 export default function Header(props: Props) {
-  const { navigation } = props;
-  const [text, setText] = useState<string>("");
+  const { navigation, fetchData } = props;
+  const [search, setSearch] = useState<string>("");
   const [filter, setFilter] = useState<string>("");
   const [sorting, setSorting] = useState<string>("date");
   const [isOpenSettings, setIsOpenSettings] = useState<boolean>(false);
@@ -25,11 +26,11 @@ export default function Header(props: Props) {
         <View style={styles.seach}>
           <TextInput
             style={styles.inputSeach}
-            onChangeText={setText}
-            value={text}
+            onChangeText={setSearch}
+            value={search}
             placeholder="Search..."
           />
-          <Button title="Search" onPress={() => navigation.navigate("Details")} />
+          <Button title="Search" onPress={() => fetchData(search)} />
         </View>
 
         <SettingsSVG width={30} height={30} onPress={() => setIsOpenSettings(!isOpenSettings)} />

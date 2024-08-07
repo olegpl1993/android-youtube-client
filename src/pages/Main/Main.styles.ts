@@ -2,42 +2,44 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   container: {
-    display: "flex",
-    width: "100%",
-    flexDirection: "column",
-    gap: 5,
+    flex: 1,
   },
 
   body: {
     display: "flex",
-    alignItems: "center",
-    width: "100%",
     flexDirection: "column",
-    borderColor: "red",
-    borderWidth: 2,
-    gap: 20,
     backgroundColor: "white",
   },
 
-  row: {
-    display: "flex",
-    flexDirection: "row",
-    gap: 20,
-  },
-
-  button: {
-    borderWidth: 2,
-    borderColor: "black",
-    borderRadius: 10,
-    padding: 10,
-    width: 100,
+  loader: {
     textAlign: "center",
+    padding: 10,
+    color: "black",
     fontSize: 20,
     fontWeight: "bold",
   },
 
-  count: {
-    color: "red",
-    fontSize: 30,
+  dataContainer: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 20,
+    paddingHorizontal: 10,
+    paddingVertical: 20,
+  },
+
+  card: {
+    display: "flex",
+    width: "100%",
+    flexDirection: "column",
+    gap: 5,
+    padding: 20,
+    backgroundColor: "rgb(230, 230, 230)",
+    borderRadius: 10,
+    elevation: 3,
+  },
+
+  image: {
+    width: "100%",
+    height: 200,
   },
 });
