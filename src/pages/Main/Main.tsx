@@ -1,9 +1,10 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useState } from "react";
-import { Image, ScrollView, Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import { RootStackParamList } from "../../app/Router.types";
 import { DataList } from "../../shared/styles/types";
 import Header from "../../widgets/Header/Header";
+import Card from "./Card/Card";
 import { styles } from "./Main.styles";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Main">;
@@ -43,13 +44,7 @@ export default function Main(props: Props) {
         {data && (
           <View style={styles.dataContainer}>
             {data.items.map((item) => (
-              <View key={item.id.videoId} style={styles.card}>
-                <Image source={{ uri: item.snippet.thumbnails.high.url }} style={styles.image} />
-                <Text>{item.snippet.title}</Text>
-                <Text>{item.snippet.description}</Text>
-                <Text>{item.snippet.publishedAt}</Text>
-                <Text>{item.snippet.channelTitle}</Text>
-              </View>
+              <Card key={item.id.videoId} item={item} />
             ))}
           </View>
         )}
