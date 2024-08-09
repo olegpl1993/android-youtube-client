@@ -1,42 +1,37 @@
 import { Button, Image, Text, View } from "react-native";
-import DislikeSVG from "../../../../assets/dislike.svg";
 import Group from "../../../../assets/Group9.svg";
 import LikedSVG from "../../../../assets/liked.svg";
 import ViewedSVG from "../../../../assets/viewed.svg";
-import { SearchItemData } from "../../../shared/styles/types";
+import { SearchItem } from "../../../shared/styles/types";
 import { styles } from "./Card.styles";
+import { timeToColor } from "./timeToColor";
 
 interface Props {
-  item: SearchItemData;
+  item: SearchItem;
 }
 
 export default function Card(props: Props) {
   const { item } = props;
 
   return (
-    <View key={item.id.videoId} style={styles.card}>
+    <View key={item.id} style={styles.card}>
       <View style={styles.content}>
         <Image source={{ uri: item.snippet.thumbnails.high.url }} style={styles.image} />
 
         <View style={styles.stats}>
           <View style={styles.statsItem}>
             <ViewedSVG width={22} height={18} />
-            <Text>123</Text>
+            <Text>{item.statistics.viewCount}</Text>
           </View>
 
           <View style={styles.statsItem}>
             <LikedSVG width={18} height={18} />
-            <Text>1234</Text>
-          </View>
-
-          <View style={styles.statsItem}>
-            <DislikeSVG width={18} height={18} />
-            <Text>123412</Text>
+            <Text>{item.statistics.likeCount}</Text>
           </View>
 
           <View style={styles.statsItem}>
             <Group width={18} height={18} />
-            <Text>1235</Text>
+            <Text>{item.statistics.commentCount}</Text>
           </View>
         </View>
 
@@ -47,7 +42,9 @@ export default function Card(props: Props) {
         </View>
       </View>
 
-      <View style={styles.dateColorRow} />
+      <View
+        style={[styles.dateColorRow, { backgroundColor: timeToColor(item.snippet.publishedAt) }]}
+      />
     </View>
   );
 }

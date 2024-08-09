@@ -37,7 +37,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
-    width: 50,
+    width: 90,
     gap: 3,
   },
 
@@ -58,6 +58,5 @@ export const styles = StyleSheet.create({
     height: 5,
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
-    backgroundColor: "rgb(2, 200, 200)",
   },
 });
