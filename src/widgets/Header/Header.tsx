@@ -4,19 +4,20 @@ import { Button, Text, TextInput, View } from "react-native";
 import MySvg from "../../../assets/logo.svg";
 import SettingsSVG from "../../../assets/search_settings.svg";
 import { RootStackParamList } from "../../app/Router.types";
+import { useStore } from "../../app/store/store";
 import { styles } from "./Header.styles";
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, keyof RootStackParamList, undefined>;
-  fetchData: (query: string) => void;
 };
 
 export default function Header(props: Props) {
-  const { navigation, fetchData } = props;
+  const { navigation } = props;
   const [search, setSearch] = useState<string>("");
   const [filter, setFilter] = useState<string>("");
   const [sorting, setSorting] = useState<string>("date");
   const [isOpenSettings, setIsOpenSettings] = useState<boolean>(false);
+  const { fetchVideos } = useStore();
 
   return (
     <View style={styles.container}>
@@ -30,7 +31,7 @@ export default function Header(props: Props) {
             value={search}
             placeholder="Search..."
           />
-          <Button title="Search" onPress={() => fetchData(search)} />
+          <Button title="Search" onPress={() => fetchVideos(search)} />
         </View>
 
         <SettingsSVG width={30} height={30} onPress={() => setIsOpenSettings(!isOpenSettings)} />
