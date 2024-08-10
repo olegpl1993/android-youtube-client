@@ -1,14 +1,17 @@
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Button, Image, Text, View } from "react-native";
-import Group from "../../../../assets/Group9.svg";
-import LikedSVG from "../../../../assets/liked.svg";
-import ViewedSVG from "../../../../assets/viewed.svg";
-import { SearchItem } from "../../../shared/styles/types";
+import Group from "../../../../../assets/Group9.svg";
+import LikedSVG from "../../../../../assets/liked.svg";
+import ViewedSVG from "../../../../../assets/viewed.svg";
+import { RootStackParamList } from "../../../../app/Router.types";
+import { SearchItem } from "../../../../shared/styles/types";
 import { styles } from "./Card.styles";
 import { timeToColor } from "./timeToColor";
 
-interface Props {
+type Props = {
   item: SearchItem;
-}
+  navigation: NativeStackNavigationProp<RootStackParamList, keyof RootStackParamList, undefined>;
+};
 
 export default function Card(props: Props) {
   const { item } = props;
@@ -38,7 +41,10 @@ export default function Card(props: Props) {
         <Text style={styles.title}>{item.snippet.title}</Text>
 
         <View style={styles.buttonContainer}>
-          <Button title="more..." onPress={() => console.log("Details")} />
+          <Button
+            title="more..."
+            onPress={() => props.navigation.navigate("Details", { id: item.id })}
+          />
         </View>
       </View>
 

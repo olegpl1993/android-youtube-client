@@ -9,6 +9,14 @@ export const styles = StyleSheet.create({
     gap: 5,
   },
 
+  loader: {
+    textAlign: "center",
+    padding: 10,
+    color: "black",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+
   body: {
     display: "flex",
     alignItems: "center",
