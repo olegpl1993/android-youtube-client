@@ -10,7 +10,7 @@ type Props = NativeStackScreenProps<RootStackParamList, "Main">;
 
 export default function Main(props: Props) {
   const { navigation } = props;
-  const { videos, loading } = useStore();
+  const { videos, loading, error } = useStore();
 
   return (
     <View style={styles.container}>
@@ -18,6 +18,7 @@ export default function Main(props: Props) {
 
       <ScrollView style={styles.body}>
         {loading && <Text style={styles.loader}>Loading...</Text>}
+        {error && <Text style={styles.loader}>Something went wrong...</Text>}
         {videos && (
           <View style={styles.dataContainer}>
             {videos.items.map((item) => (
