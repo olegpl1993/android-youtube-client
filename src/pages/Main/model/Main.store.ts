@@ -1,7 +1,7 @@
 import { create } from "zustand";
-import { getVideos } from "../../../shared/styles/api/getVideos";
-import { getVideosDetailByIds } from "../../../shared/styles/api/getVideosDetailByIds";
-import { SearchItemData, SearchResultList } from "../../../shared/styles/types";
+import { getVideos } from "../../../shared/api/getVideos";
+import { getVideosDetailByIds } from "../../../shared/api/getVideosDetailByIds";
+import { SearchItemData, SearchResultList } from "../../../shared/types";
 
 type Store = {
   data: SearchResultList | null;
