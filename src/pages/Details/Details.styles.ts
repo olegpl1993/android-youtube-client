@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { colors } from "../../shared/styles/variables";
 
 export const styles = StyleSheet.create({
   container: {
@@ -6,17 +7,52 @@ export const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     flexDirection: "column",
-    gap: 5,
+  },
+
+  loader: {
+    textAlign: "center",
+    padding: 10,
+    color: "black",
+    fontSize: 20,
+    fontWeight: "bold",
   },
 
   body: {
     display: "flex",
-    alignItems: "center",
+    flexDirection: "column",
+    backgroundColor: "white",
+  },
+
+  content: {
+    display: "flex",
     width: "100%",
     flexDirection: "column",
-    borderColor: "red",
-    borderWidth: 2,
+    alignItems: "center",
     gap: 20,
-    backgroundColor: "white",
+    padding: 20,
+  },
+
+  title: {
+    fontSize: 22,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+
+  date: {
+    fontSize: 14,
+    width: "100%",
+    fontWeight: "300",
+    color: colors.gray,
+    textAlign: "right",
+  },
+
+  image: {
+    width: "100%",
+    height: 200,
+  },
+
+  description: {
+    fontSize: 16,
+    color: colors.gray,
   },
 });
