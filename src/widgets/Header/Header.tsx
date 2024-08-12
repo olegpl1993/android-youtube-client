@@ -9,13 +9,15 @@ import { styles } from "./Header.styles";
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, keyof RootStackParamList, undefined>;
   fetchData?: (query: string) => Promise<void>;
+  sorting?: string;
+  setSorting?: (sorting: string) => void;
+  filter?: string;
+  setFilter?: (filter: string) => void;
 };
 
 export default function Header(props: Props) {
-  const { navigation, fetchData } = props;
+  const { navigation, fetchData, sorting, setSorting, filter, setFilter } = props;
   const [search, setSearch] = useState<string>("");
-  const [filter, setFilter] = useState<string>("");
-  const [sorting, setSorting] = useState<string>("date");
   const [isOpenSettings, setIsOpenSettings] = useState<boolean>(false);
 
   return (
@@ -31,7 +33,7 @@ export default function Header(props: Props) {
               value={search}
               placeholder="Search..."
             />
-            <Button title="Search" onPress={() => fetchData(search)} />
+            <Button title="Search" onPress={() => fetchData(search.trim())} />
           </View>
         )}
 
@@ -40,7 +42,7 @@ export default function Header(props: Props) {
         )}
       </View>
 
-      {isOpenSettings && (
+      {isOpenSettings && setSorting && (
         <View style={styles.settings}>
           <View style={styles.row}>
             <Text style={styles.text}>Sorting by:</Text>
