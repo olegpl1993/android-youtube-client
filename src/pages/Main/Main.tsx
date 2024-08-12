@@ -4,6 +4,7 @@ import { ScrollView, Text, View } from "react-native";
 import { RootStackParamList } from "../../app/Router.types";
 import Header from "../../widgets/Header/Header";
 import Card from "./components/Card/Card";
+import Pagination from "./components/Pagination/Pagination";
 import { styles } from "./Main.styles";
 import { useMainStore } from "./model/Main.store";
 import { sortMap } from "./model/sortMap.util";
@@ -12,9 +13,10 @@ type Props = NativeStackScreenProps<RootStackParamList, "Main">;
 
 export default function Main(props: Props) {
   const { navigation } = props;
-  const { data, loading, error, fetchData } = useMainStore();
+  const { data, loading, error, nextPageToken, prevPageToken, fetchData } = useMainStore();
   const [sorting, setSorting] = useState<string>("date");
   const [filter, setFilter] = useState<string>("");
+  const [search, setSearch] = useState<string>("");
 
   return (
     <View style={styles.container}>
@@ -25,6 +27,8 @@ export default function Main(props: Props) {
         setSorting={setSorting}
         filter={filter}
         setFilter={setFilter}
+        search={search}
+        setSearch={setSearch}
       />
 
       <ScrollView style={styles.body}>
@@ -41,6 +45,15 @@ export default function Main(props: Props) {
                 <Card key={item.id} item={item} navigation={navigation} />
               ))}
           </View>
+        )}
+
+        {data && (
+          <Pagination
+            fetchData={fetchData}
+            nextPageToken={nextPageToken}
+            prevPageToken={prevPageToken}
+            search={search}
+          />
         )}
       </ScrollView>
     </View>

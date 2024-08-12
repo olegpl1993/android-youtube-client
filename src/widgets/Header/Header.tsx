@@ -13,11 +13,13 @@ type Props = {
   setSorting?: (sorting: string) => void;
   filter?: string;
   setFilter?: (filter: string) => void;
+  search?: string;
+  setSearch?: (search: string) => void;
 };
 
 export default function Header(props: Props) {
-  const { navigation, fetchData, sorting, setSorting, filter, setFilter } = props;
-  const [search, setSearch] = useState<string>("");
+  const { navigation, fetchData, sorting, setSorting, filter, setFilter, search, setSearch } =
+    props;
   const [isOpenSettings, setIsOpenSettings] = useState<boolean>(false);
 
   return (
@@ -25,7 +27,7 @@ export default function Header(props: Props) {
       <View style={styles.topRow}>
         <MySvg width={50} height={50} onPress={() => navigation.navigate("Main")} />
 
-        {fetchData && (
+        {fetchData && search !== undefined && (
           <View style={styles.seach}>
             <TextInput
               style={styles.inputSeach}
