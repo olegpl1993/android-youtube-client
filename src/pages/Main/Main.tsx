@@ -39,7 +39,7 @@ export default function Main(props: Props) {
             {data.items
               .sort(sortMap[sorting as keyof typeof sortMap])
               .filter((item) =>
-                item.snippet.title.trim().toLowerCase().includes(filter.toLowerCase()),
+                item.snippet.title.toLowerCase().includes(filter.trim().toLowerCase()),
               )
               .map((item) => (
                 <Card key={item.id} item={item} navigation={navigation} />
