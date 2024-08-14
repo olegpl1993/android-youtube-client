@@ -1,5 +1,5 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { Button, Image, Text, View } from "react-native";
+import { Image, Pressable, Text, View } from "react-native";
 import { RootStackParamList } from "../../../../app/Router.types";
 import VideoStats from "../../../../shared/components/VideoStats/VideoStats";
 import { SearchItem } from "../../../../shared/types";
@@ -28,10 +28,12 @@ export default function Card(props: Props) {
         <Text style={styles.title}>{item.snippet.title}</Text>
 
         <View style={styles.buttonContainer}>
-          <Button
-            title="more..."
+          <Pressable
+            style={styles.button}
             onPress={() => props.navigation.navigate("Details", { id: item.id })}
-          />
+          >
+            <Text style={styles.buttonText}>more...</Text>
+          </Pressable>
         </View>
       </View>
 
