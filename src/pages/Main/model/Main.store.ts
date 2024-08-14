@@ -1,7 +1,8 @@
 import { create } from "zustand";
 import { getVideos } from "../../../shared/api/getVideos";
 import { getVideosDetailByIds } from "../../../shared/api/getVideosDetailByIds";
-import { SearchItemData, SearchResultList } from "../../../shared/types";
+import { SearchItem, SearchItemData, SearchResultList } from "../../../shared/types";
+import { sortMap } from "./sortMap.util";
 
 type Store = {
   data: SearchResultList | null;
@@ -12,13 +13,14 @@ type Store = {
   sorting: string;
   filter: string;
   search: string;
+  getProcessedData: () => SearchItem[] | undefined;
   fetchData: (query: string, pageToken?: string) => Promise<void>;
   setSorting: (sorting: string) => void;
   setFilter: (filter: string) => void;
   setSearch: (search: string) => void;
 };
 
-export const useMainStore = create<Store>((set) => ({
+export const useMainStore = create<Store>((set, get) => ({
   data: null,
   loading: false,
   error: false,
@@ -27,6 +29,14 @@ export const useMainStore = create<Store>((set) => ({
   sorting: "date",
   filter: "",
   search: "",
+
+  getProcessedData: () => {
+    return get()
+      .data?.items.sort(sortMap[get().sorting as keyof typeof sortMap])
+      .filter((item) =>
+        item.snippet.title.toLowerCase().includes(get().filter.trim().toLowerCase()),
+      );
+  },
 
   fetchData: async (query: string, pageToken?: string) => {
     try {

@@ -6,14 +6,12 @@ import Card from "./components/Card/Card";
 import Pagination from "./components/Pagination/Pagination";
 import { styles } from "./Main.styles";
 import { useMainStore } from "./model/Main.store";
-import { sortMap } from "./model/sortMap.util";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Main">;
 
 export default function Main(props: Props) {
   const { navigation } = props;
   const {
-    data,
     loading,
     error,
     nextPageToken,
@@ -21,11 +19,14 @@ export default function Main(props: Props) {
     sorting,
     filter,
     search,
+    getProcessedData,
     fetchData,
     setSorting,
     setFilter,
     setSearch,
   } = useMainStore();
+
+  const processedData = getProcessedData();
 
   return (
     <View style={styles.container}>
@@ -43,20 +44,15 @@ export default function Main(props: Props) {
       <ScrollView style={styles.body}>
         {loading && <Text style={styles.loader}>Loading...</Text>}
         {error && <Text style={styles.loader}>Something went wrong...</Text>}
-        {data && (
+        {processedData && (
           <View style={styles.dataContainer}>
-            {data.items
-              .sort(sortMap[sorting as keyof typeof sortMap])
-              .filter((item) =>
-                item.snippet.title.toLowerCase().includes(filter.trim().toLowerCase()),
-              )
-              .map((item) => (
-                <Card key={item.id} item={item} navigation={navigation} />
-              ))}
+            {processedData.map((item) => (
+              <Card key={item.id} item={item} navigation={navigation} />
+            ))}
           </View>
         )}
 
-        {data && (
+        {processedData && (
           <Pagination
             fetchData={fetchData}
             nextPageToken={nextPageToken}
