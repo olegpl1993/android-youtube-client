@@ -1,5 +1,4 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { RootStackParamList } from "../../app/Router.types";
 import Header from "../../widgets/Header/Header";
@@ -13,10 +12,20 @@ type Props = NativeStackScreenProps<RootStackParamList, "Main">;
 
 export default function Main(props: Props) {
   const { navigation } = props;
-  const { data, loading, error, nextPageToken, prevPageToken, fetchData } = useMainStore();
-  const [sorting, setSorting] = useState<string>("date");
-  const [filter, setFilter] = useState<string>("");
-  const [search, setSearch] = useState<string>("");
+  const {
+    data,
+    loading,
+    error,
+    nextPageToken,
+    prevPageToken,
+    sorting,
+    filter,
+    search,
+    fetchData,
+    setSorting,
+    setFilter,
+    setSearch,
+  } = useMainStore();
 
   return (
     <View style={styles.container}>

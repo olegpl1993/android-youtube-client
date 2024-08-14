@@ -9,7 +9,13 @@ type Store = {
   error: boolean;
   nextPageToken: string | null;
   prevPageToken: string | null;
+  sorting: string;
+  filter: string;
+  search: string;
   fetchData: (query: string, pageToken?: string) => Promise<void>;
+  setSorting: (sorting: string) => void;
+  setFilter: (filter: string) => void;
+  setSearch: (search: string) => void;
 };
 
 export const useMainStore = create<Store>((set) => ({
@@ -18,6 +24,9 @@ export const useMainStore = create<Store>((set) => ({
   error: false,
   nextPageToken: null,
   prevPageToken: null,
+  sorting: "date",
+  filter: "",
+  search: "",
 
   fetchData: async (query: string, pageToken?: string) => {
     try {
@@ -34,4 +43,8 @@ export const useMainStore = create<Store>((set) => ({
       set({ loading: false, error: true });
     }
   },
+
+  setSorting: (sorting: string) => set({ sorting }),
+  setFilter: (filter: string) => set({ filter }),
+  setSearch: (search: string) => set({ search }),
 }));
