@@ -1,4 +1,4 @@
-import { Button, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import { styles } from "./Pagination.styles";
 
 interface Props {
@@ -13,21 +13,25 @@ export default function Pagination(props: Props) {
   return (
     <View style={styles.container}>
       {prevPageToken && (
-        <Button
-          title="Prev Page"
+        <Pressable
+          style={styles.button}
           onPress={() => {
             fetchData(search.trim(), prevPageToken);
           }}
-        />
+        >
+          <Text style={styles.buttonText}>Prev Page</Text>
+        </Pressable>
       )}
 
       {nextPageToken && (
-        <Button
-          title="Next Page"
+        <Pressable
+          style={styles.button}
           onPress={() => {
             fetchData(search.trim(), nextPageToken);
           }}
-        />
+        >
+          <Text style={styles.buttonText}>Next Page</Text>
+        </Pressable>
       )}
     </View>
   );

@@ -1,6 +1,6 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useState } from "react";
-import { Button, Text, TextInput, View } from "react-native";
+import { Pressable, Text, TextInput, View } from "react-native";
 import MySvg from "../../../assets/logo.svg";
 import SettingsSVG from "../../../assets/search_settings.svg";
 import { RootStackParamList } from "../../app/Router.types";
@@ -25,7 +25,9 @@ export default function Header(props: Props) {
   return (
     <View style={styles.container}>
       <View style={styles.topRow}>
-        <MySvg width={50} height={50} onPress={() => navigation.navigate("Main")} />
+        <Pressable onPress={() => navigation.navigate("Main")}>
+          <MySvg width={50} height={50} />
+        </Pressable>
 
         {fetchData && search !== undefined && (
           <View style={styles.seach}>
@@ -35,12 +37,16 @@ export default function Header(props: Props) {
               value={search}
               placeholder="Search..."
             />
-            <Button title="Search" onPress={() => fetchData(search.trim())} />
+            <Pressable style={styles.button} onPress={() => fetchData(search.trim())}>
+              <Text style={styles.buttonText}>SEARCH</Text>
+            </Pressable>
           </View>
         )}
 
         {fetchData && (
-          <SettingsSVG width={30} height={30} onPress={() => setIsOpenSettings(!isOpenSettings)} />
+          <Pressable onPress={() => setIsOpenSettings(!isOpenSettings)}>
+            <SettingsSVG width={30} height={30} />
+          </Pressable>
         )}
       </View>
 

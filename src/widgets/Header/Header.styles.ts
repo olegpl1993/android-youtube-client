@@ -63,8 +63,8 @@ export const styles = StyleSheet.create({
     height: 35,
     backgroundColor: "white",
     padding: 5,
-    borderTopLeftRadius: 2,
-    borderBottomLeftRadius: 2,
+    borderTopLeftRadius: 4,
+    borderBottomLeftRadius: 4,
   },
 
   input: {
@@ -73,6 +73,20 @@ export const styles = StyleSheet.create({
     height: 30,
     backgroundColor: "white",
     padding: 5,
-    borderRadius: 2,
+    borderRadius: 4,
+  },
+
+  button: {
+    fontSize: 16,
+    backgroundColor: colors.primaryBlue,
+    color: "white",
+    padding: 8,
+    borderTopRightRadius: 4,
+    borderBottomRightRadius: 4,
+  },
+
+  buttonText: {
+    fontSize: 16,
+    color: "white",
   },
 });

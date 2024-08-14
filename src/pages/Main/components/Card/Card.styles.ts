@@ -37,6 +37,20 @@ export const styles = StyleSheet.create({
     width: 200,
   },
 
+  button: {
+    fontSize: 16,
+    backgroundColor: colors.primaryBlue,
+    color: "white",
+    padding: 8,
+    borderRadius: 4,
+  },
+
+  buttonText: {
+    fontSize: 16,
+    color: "white",
+    textAlign: "center",
+  },
+
   dateColorRow: {
     width: "100%",
     height: 5,
