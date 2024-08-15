@@ -13,6 +13,11 @@ export const styles = StyleSheet.create({
     backgroundColor: "black",
   },
 
+  logo: {
+    width: 50,
+    height: 50,
+  },
+
   topRow: {
     display: "flex",
     flexDirection: "row",
@@ -80,7 +85,7 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     backgroundColor: colors.primaryBlue,
     color: "white",
-    padding: 8,
+    padding: 7,
     borderTopRightRadius: 4,
     borderBottomRightRadius: 4,
   },
