@@ -1,6 +1,7 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { ScrollView, Text, View } from "react-native";
 import { RootStackParamList } from "../../app/Router.types";
+import Loader from "../../shared/components/Loader/Loader";
 import Header from "../../widgets/Header/Header";
 import Card from "./components/Card/Card";
 import Pagination from "./components/Pagination/Pagination";
@@ -41,9 +42,10 @@ export default function Main(props: Props) {
         setSearch={setSearch}
       />
 
+      {loading && <Loader />}
+
       <ScrollView style={styles.body}>
-        {loading && <Text style={styles.loader}>Loading...</Text>}
-        {error && <Text style={styles.loader}>Something went wrong...</Text>}
+        {error && <Text style={styles.error}>Something went wrong...</Text>}
         {processedData && (
           <View style={styles.dataContainer}>
             {processedData.map((item) => (

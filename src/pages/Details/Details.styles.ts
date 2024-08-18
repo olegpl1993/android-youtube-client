@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     flexDirection: "column",
   },
 
-  loader: {
+  error: {
     textAlign: "center",
     padding: 10,
     color: "black",

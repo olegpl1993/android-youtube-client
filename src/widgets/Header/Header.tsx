@@ -1,7 +1,6 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useState } from "react";
-import { Pressable, Text, TextInput, View } from "react-native";
-import MySvg from "../../../assets/logo.svg";
+import { Image, Pressable, Text, TextInput, View } from "react-native";
 import SettingsSVG from "../../../assets/search_settings.svg";
 import { RootStackParamList } from "../../app/Router.types";
 import { styles } from "./Header.styles";
@@ -26,7 +25,7 @@ export default function Header(props: Props) {
     <View style={styles.container}>
       <View style={styles.topRow}>
         <Pressable onPress={() => navigation.navigate("Main")}>
-          <MySvg width={50} height={50} />
+          <Image style={styles.logo} source={require("../../../assets/logo.png")} />
         </Pressable>
 
         {fetchData && search !== undefined && (

@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     backgroundColor: "white",
   },
 
-  loader: {
+  error: {
     textAlign: "center",
     padding: 10,
     color: "black",

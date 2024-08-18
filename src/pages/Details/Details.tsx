@@ -2,6 +2,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useEffect } from "react";
 import { Image, ScrollView, Text, View } from "react-native";
 import { RootStackParamList } from "../../app/Router.types";
+import Loader from "../../shared/components/Loader/Loader";
 import VideoStats from "../../shared/components/VideoStats/VideoStats";
 import Header from "../../widgets/Header/Header";
 import { styles } from "./Details.styles";
@@ -22,9 +23,10 @@ export default function Details(props: Props) {
     <View style={styles.container}>
       <Header navigation={navigation} />
 
+      {loading && <Loader />}
+
       <ScrollView style={styles.body}>
-        {loading && <Text style={styles.loader}>Loading...</Text>}
-        {error && <Text style={styles.loader}>Something went wrong...</Text>}
+        {error && <Text style={styles.error}>Something went wrong...</Text>}
         {data && (
           <View style={styles.content}>
             <Text style={styles.date}>
